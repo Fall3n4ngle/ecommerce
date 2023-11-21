@@ -56,7 +56,7 @@ export default async function Home({
       <div className="mb-8">
         <ShowcaseSlider />
       </div>
-      <div className="mb-4 flex items-center justify-between border-b-[1px]  border-input bg-background pb-4">
+      <div id="search-view" className="scroll-mt-20 mb-4 flex items-center justify-between border-b-[1px]  border-input bg-background pb-4">
         <h3 className="text-xl font-semibold text-muted-foreground">
           {totalResults} Results
         </h3>
