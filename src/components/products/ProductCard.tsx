@@ -1,7 +1,7 @@
 import { Category } from "@/types";
-import { Card, CardContent, CardFooter } from "@/components/ui/Card";
+import { Card, CardContent, CardFooter } from "@/components/ui";
 import Image from "next/image";
-import { shimmer, toBase64 } from "@/lib/utils/image";
+import { shimmer, toBase64 } from "@/lib/utils";
 
 type Props = {
   image: string;

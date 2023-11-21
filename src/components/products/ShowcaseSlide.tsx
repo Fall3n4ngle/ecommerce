@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui";
 import { shimmer, toBase64 } from "@/lib/utils/image";
 import Image from "next/image";
 import Link from "next/link";

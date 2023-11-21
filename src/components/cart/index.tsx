@@ -6,16 +6,16 @@ import {
   SheetFooter,
   SheetHeader,
   SheetTitle,
-} from "@/components/ui/Sheet";
+  ScrollArea
+} from "@/components/ui";
 import { useShoppingCart } from "use-shopping-cart";
 import CartItem from "./CartItem";
-import { ScrollArea } from "../ui/ScrollArea";
 import EmptyCartMessage from "./EmptyCartMessage";
 import CartSummary from "./CartSummary";
-import { useToast } from "@/lib/hooks/useToast";
+import { useToast } from "@/lib/hooks";
 import { X } from "lucide-react";
 import { safeParse } from "valibot";
-import { productDataSchema } from "@/lib/validations/productData";
+import { productDataSchema } from "@/lib/validations";
 
 export default function Cart() {
   const {

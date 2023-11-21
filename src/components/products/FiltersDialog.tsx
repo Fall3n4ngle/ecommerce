@@ -5,12 +5,12 @@ import {
   DialogTitle,
   DialogDescription,
   DialogTrigger,
-} from "@/components/ui/Dialog";
+  Button
+} from "@/components/ui";
 import { SlidersHorizontal } from "lucide-react";
-import { Button } from "@/components/ui/Button";
 import FiltersForm from "./FiltersForm";
-import { Sort } from "./Sort";
-import { getAllFilters } from "@/lib/actions/filters";
+import Sort from "./Sort";
+import { getAllFilters } from "@/lib/actions";
 
 export default async function FiltersDialog() {
   const filters = await getAllFilters();

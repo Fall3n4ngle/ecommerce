@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
-import { useQueryParams } from "@/lib/hooks/useQueryParams";
+import { Button } from "@/components/ui";
+import { useQueryParams } from "@/lib/hooks";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type Props = {

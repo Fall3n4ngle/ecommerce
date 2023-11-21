@@ -1,8 +1,8 @@
 import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui";
 import { useTransition } from "react";
-import { checkout } from "@/lib/actions/checkout";
-import { useToast } from "@/lib/hooks/useToast";
+import { checkout } from "@/lib/actions";
+import { useToast } from "@/lib/hooks";
 import { Loader2 } from "lucide-react";
 
 export default function CartSummary() {

@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/Select";
-import { useQueryParams } from "@/lib/hooks/useQueryParams";
+import { useQueryParams } from "@/lib/hooks";
 
 const sortOptions = [
   {
@@ -24,7 +24,7 @@ const sortOptions = [
   },
 ];
 
-export function Sort() {
+export default function Sort() {
   const { setQueryParams, queryParams } = useQueryParams<{
     sort_by?: string;
   }>();

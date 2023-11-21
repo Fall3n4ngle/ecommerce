@@ -6,13 +6,12 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/Accordion";
-import { Checkbox } from "@/components/ui/Checkbox";
-import { Input } from "@/components/ui/Input";
-import { Label } from "@/components/ui/Label";
-import { useQueryParams } from "@/lib/hooks/useQueryParams";
+  Checkbox,
+  Input,
+  Label
+} from "@/components/ui";
+import { useQueryParams, useDebounce } from "@/lib/hooks";
 import { useEffect, useState } from "react";
-import { useDebounce } from "@/lib/hooks/useDebounce";
 
 type Props = {
   filters: {

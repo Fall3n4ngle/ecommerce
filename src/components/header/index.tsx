@@ -2,7 +2,7 @@
 
 import Logo from "./Logo";
 import { ModeToggle } from "./ModeToggle";
-import { Button } from "../ui/Button";
+import { Button } from "@/components/ui";
 import { Search, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";

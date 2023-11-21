@@ -1,4 +1,4 @@
-import { getShowcaseProducts } from "@/lib/actions/showcaseProducts";
+import { getShowcaseProducts } from "@/lib/actions";
 import BasicSlider from "./BasicSlider";
 import ShowcaseSlide from "./ShowcaseSlide";
 

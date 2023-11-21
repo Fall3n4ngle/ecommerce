@@ -5,8 +5,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { Image as TImage } from "sanity";
 import { urlForImage } from "../../../sanity/lib/image";
-import { shimmer, toBase64 } from "@/lib/utils/image";
-import { cn } from "@/lib/utils/cn";
+import { shimmer, toBase64, cn } from "@/lib/utils";
 
 type Props = {
   images: TImage[];

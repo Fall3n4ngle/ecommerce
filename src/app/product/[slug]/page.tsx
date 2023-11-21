@@ -1,10 +1,8 @@
-import Gallery from "@/components/product/Gallery";
-import ProductForm from "@/components/product/ProductForm";
-import { getProductBySlug } from "@/lib/actions/product";
+import { ProductForm, Gallery } from "@/components/product";
+import { getProductBySlug } from "@/lib/actions";
 import { Metadata } from "next";
 import { urlForImage } from "../../../../sanity/lib/image";
 import { notFound } from "next/navigation";
-import { Skeleton } from "@/components/ui/Skeleton";
 
 type Props = {
   params: {

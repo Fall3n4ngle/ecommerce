@@ -1,9 +1,8 @@
 import Image from "next/image";
 import { Trash } from "lucide-react";
-import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
+import { Button, Input } from "@/components/ui";
 import { ChangeEvent } from "react";
-import { ProductData } from "@/lib/validations/productData";
+import { ProductData } from "@/lib/validations";
 
 type Props = {
   image: string;

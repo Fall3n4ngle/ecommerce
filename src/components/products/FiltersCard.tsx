@@ -1,7 +1,7 @@
 import FiltersForm from "./FiltersForm";
-import { Card, CardContent, CardFooter } from "../ui/Card";
+import { Card, CardContent, CardFooter } from "@/components/ui";
 import SocialIcons from "../SocialIcons";
-import { getAllFilters } from "@/lib/actions/filters";
+import { getAllFilters } from "@/lib/actions";
 
 export default async function FiltersCard() {
   const filters = await getAllFilters();

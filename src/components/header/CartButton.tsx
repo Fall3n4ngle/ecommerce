@@ -1,5 +1,5 @@
 import { useShoppingCart } from "use-shopping-cart";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui";
 import { ShoppingCart } from "lucide-react";
 
 export default function CartButton() {

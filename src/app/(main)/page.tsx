@@ -1,17 +1,18 @@
-import FiltersCard from "@/components/products/FiltersCard";
-import ProductCard from "@/components/products/ProductCard";
-import { Sort } from "@/components/products/Sort";
-import { getProducts } from "@/lib/actions/product";
+import {
+  FiltersCard,
+  ProductCard,
+  Sort,
+  ShowcaseSlider,
+  Pagination,
+  FiltersDialog,
+} from "@/components/products";
+import { getProducts } from "@/lib/actions";
 import Link from "next/link";
-import { Metadata } from "next";
-import ShowcaseSlider from "@/components/products/ShowcaseSlider";
-import Pagination from "@/components/products/Pagination";
-import FiltersDialog from "@/components/products/FiltersDialog";
 import {
   formatOptionsFilter,
   formatOrder,
   formatPriceFilter,
-} from "@/lib/utils/filterFormaters";
+} from "@/lib/utils";
 
 type Props = {
   searchParams: {
@@ -80,9 +81,7 @@ export default async function Home({
               );
             })}
           </div>
-          {totalPages > 1 ? (
-            <Pagination totalPages={totalPages} />
-          ) : null}
+          {totalPages > 1 ? <Pagination totalPages={totalPages} /> : null}
         </div>
       </div>
     </>

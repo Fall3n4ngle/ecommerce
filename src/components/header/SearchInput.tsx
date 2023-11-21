@@ -1,6 +1,5 @@
-import { Input } from "@/components/ui/Input";
-import { useDebounce } from "@/lib/hooks/useDebounce";
-import { useQueryParams } from "@/lib/hooks/useQueryParams";
+import { Input } from "@/components/ui";
+import { useDebounce, useQueryParams } from "@/lib/hooks";
 import { useEffect, useState } from "react";
 
 export default function SearchInput() {
