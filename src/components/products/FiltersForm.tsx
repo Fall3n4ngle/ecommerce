@@ -8,7 +8,7 @@ import {
   AccordionTrigger,
   Checkbox,
   Input,
-  Label
+  Label,
 } from "@/components/ui";
 import { useQueryParams, useDebounce } from "@/lib/hooks";
 import { useEffect, useState } from "react";
@@ -106,11 +106,13 @@ export default function FiltersForm({ filters }: Props) {
           </AccordionItem>
         ))}
       </Accordion>
-      <Label className="block py-4 text-base leading-none">
-        Price (min-max)
-      </Label>
+      <span className="block py-4 text-base leading-none">Price (min-max)</span>
       <div className="flex w-full items-center justify-between gap-2">
+        <label htmlFor="min" className="sr-only">
+          Min value
+        </label>
         <Input
+          id="min"
           type="number"
           className="w-20"
           defaultValue={0}
@@ -121,7 +123,11 @@ export default function FiltersForm({ filters }: Props) {
           }}
         />
         <span>-</span>
+        <label htmlFor="max" className="sr-only">
+          Max value
+        </label>
         <Input
+          id="max"
           type="number"
           className="w-20"
           defaultValue={100}

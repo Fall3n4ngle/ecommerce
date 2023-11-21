@@ -14,6 +14,7 @@ export default function CartButton() {
     >
       <ShoppingCart className="h-[1.2rem] w-[1.2rem]" />
       <span className="ml-2">{cartCount}</span>
+      <span className="sr-only">open cart</span>
     </Button>
   );
 }

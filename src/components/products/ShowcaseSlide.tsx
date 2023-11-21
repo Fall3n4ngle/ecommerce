@@ -47,7 +47,7 @@ export default function ShowcaseSlide({
           <p className="mb-4 text-sm text-[#f8f8f7]/80 sm:text-base">
             {description}
           </p>
-          <Link href={`/product/${slug}`}>
+          <Link href={`/product/${slug}`} className="test-class">
             <Button className="self-start">View details</Button>
           </Link>
         </div>

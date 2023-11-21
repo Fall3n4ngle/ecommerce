@@ -38,7 +38,7 @@ export default function Sort() {
       onValueChange={handleValueChange}
       defaultValue={queryParams.get("sort_by") ?? ""}
     >
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-[180px]" aria-label="sort by">
         <SelectValue placeholder="Sort by..." />
       </SelectTrigger>
       <SelectContent>
