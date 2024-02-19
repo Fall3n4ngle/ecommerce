@@ -60,6 +60,15 @@ const getColors = async () => {
 };
 
 export const getAllFilters = cache(async () => {
-  const filters = await Promise.all([getCategoies(), getSizes(), getColors()]);
-  return filters;
+  try {
+    const filters = await Promise.all([
+      getCategoies(),
+      getSizes(),
+      getColors(),
+    ]);
+    
+    return filters;
+  } catch (error) {
+    throw new Error("Failed to get filters");
+  }
 });

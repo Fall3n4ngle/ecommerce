@@ -14,19 +14,23 @@ type GetShowcaseProductsReturnType = {
 }[];
 
 export const getShowcaseProducts = async () => {
-  const query = groq`
-    *[_type == "showcaseProducts"] {
-        "products": products[]-> {
-            "id": _id,
-            name,
-            description,
-            "image": images[0].asset->url,
-            "slug": slug.current
-        }
-    }
-    `;
+  try {
+    const query = groq`
+  *[_type == "showcaseProducts"] {
+      "products": products[]-> {
+          "id": _id,
+          name,
+          description,
+          "image": images[0].asset->url,
+          "slug": slug.current
+      }
+  }
+  `;
 
-  const [{ products }]: GetShowcaseProductsReturnType =
-    await client.fetch(query);
-  return products;
+    const [{ products }]: GetShowcaseProductsReturnType =
+      await client.fetch(query);
+    return products;
+  } catch (error) {
+    throw new Error("Failed to get showcase products");
+  }
 };

@@ -3,8 +3,8 @@ import { Product } from "@/common/types";
 import { cache } from "react";
 import { client } from "../../../../../sanity/lib/client";
 
-export const getProductBySlug = cache(
-  async (slug: string): Promise<Product | undefined> => {
+export const getProductBySlug = cache(async (slug: string) => {
+  try {
     const query = groq`
     *[_type == "product" && slug.current == $slug][0] {
       "id": _id,
@@ -21,8 +21,10 @@ export const getProductBySlug = cache(
   `;
 
     const params = { slug };
-    const product = await client.fetch(query, params);
+    const product: Product = await client.fetch(query, params);
 
     return product;
-  },
-);
+  } catch (error) {
+    throw new Error("Failed to get product");
+  }
+});

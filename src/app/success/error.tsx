@@ -11,10 +11,6 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
-
   return (
     <div className="h-full pt-[5%]">
       <div className="flex flex-col items-center gap-8 text-center">
