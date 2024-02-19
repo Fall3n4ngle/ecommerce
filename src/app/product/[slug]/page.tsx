@@ -1,5 +1,5 @@
-import { ProductForm, Gallery } from "@/components/product";
-import { getProductBySlug } from "@/lib/actions";
+import { ProductForm, Gallery } from "./components";
+import { getProductBySlug } from "./actions/product";
 import { Metadata } from "next";
 import { urlForImage } from "../../../../sanity/lib/image";
 import { notFound } from "next/navigation";

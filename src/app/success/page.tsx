@@ -1,4 +1,4 @@
-import CheckoutSession from "@/components/success/CheckoutSession";
+import { CheckoutSession } from "@/app/success/components";
 import { stripe } from "@/lib/stripe";
 import { notFound } from "next/navigation";
 

@@ -5,14 +5,14 @@ import {
   ShowcaseSlider,
   Pagination,
   FiltersDialog,
-} from "@/components/products";
-import { getProducts } from "@/lib/actions";
+} from "./components";
+import { getProducts } from "@/common/actions/products";
 import Link from "next/link";
 import {
   formatOptionsFilter,
   formatOrder,
   formatPriceFilter,
-} from "@/lib/utils";
+} from "@/common/utils";
 
 type Props = {
   searchParams: {
@@ -78,10 +78,7 @@ export default async function Home({
           <div className="mb-10 grid  grid-cols-1 gap-4 min-[510px]:grid-cols-2 min-[1010px]:grid-cols-3">
             {products.map(({ slug, id, ...props }) => {
               return (
-                <Link
-                  key={id}
-                  href={`/product/${slug}`}
-                >
+                <Link key={id} href={`/product/${slug}`}>
                   <ProductCard {...props} />
                 </Link>
               );

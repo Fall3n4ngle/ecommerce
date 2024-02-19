@@ -3,11 +3,11 @@ import { stripe } from "@/lib/stripe";
 import Stripe from "stripe";
 import { headers } from "next/headers";
 import { safeParse } from "valibot";
-import { createOrder } from "@/lib/actions/order";
+import { createOrder } from "./actions/order";
 import {
   checkoutDataSchema,
   productDataSchema,
-} from "@/lib/validations/checkoutData";
+} from "./validations/checkoutData";
 
 export async function POST(request: Request) {
   const body = await request.text();
