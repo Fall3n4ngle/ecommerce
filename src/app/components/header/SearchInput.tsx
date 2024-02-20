@@ -9,7 +9,9 @@ export default function SearchInput() {
   const debouncedQuery = useDebounce(query);
 
   const handleScroll = () => {
-    document.getElementById("search-view")!.scrollIntoView();
+    const element = document.getElementById("search-view");
+    if (!element) return;
+    element.scrollIntoView();
   };
 
   useEffect(() => {

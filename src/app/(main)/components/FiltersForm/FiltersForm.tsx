@@ -2,7 +2,7 @@
 
 import PriceRange from "./PriceRange";
 import FiltersAccordion from "./FiltersAccordion";
-import { FormFilter } from "../../types/FormFilter";
+import { FormFilter } from "../../types/formFilter";
 
 type Props = {
   filters: FormFilter[];

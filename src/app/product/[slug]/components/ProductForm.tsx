@@ -2,9 +2,7 @@
 
 import { Filter, Product } from "@/common/types";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Button } from "@/ui/Button";
-import { Label } from "@/ui/Label";
-import { Input } from "@/ui/Input";
+import { Button, Label, Input } from "@/ui";
 import { useShoppingCart } from "use-shopping-cart";
 import { useToast } from "@/common/hooks/useToast";
 import { Check } from "lucide-react";

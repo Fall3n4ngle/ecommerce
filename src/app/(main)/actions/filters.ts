@@ -4,6 +4,7 @@ import { groq } from "next-sanity";
 import { Filter } from "@/common/types";
 import { client } from "../../../../sanity/lib/client";
 import { cache } from "react";
+import { FormFilter } from "../types/formFilter";
 
 const getCategoies = async () => {
   const query = groq`
@@ -18,9 +19,9 @@ const getCategoies = async () => {
 
   return {
     title: "Categories",
-    value: "category" as const,
+    value: "category",
     data: categories,
-  };
+  } as FormFilter;
 };
 
 const getSizes = async () => {
@@ -36,9 +37,9 @@ const getSizes = async () => {
 
   return {
     title: "Sizes",
-    value: "size" as const,
+    value: "size",
     data: sizes,
-  };
+  } as FormFilter;
 };
 
 const getColors = async () => {
@@ -54,9 +55,9 @@ const getColors = async () => {
 
   return {
     title: "Colors",
-    value: "color" as const,
+    value: "color",
     data: colors,
-  };
+  } as FormFilter;
 };
 
 export const getAllFilters = cache(async () => {
@@ -66,7 +67,7 @@ export const getAllFilters = cache(async () => {
       getSizes(),
       getColors(),
     ]);
-    
+
     return filters;
   } catch (error) {
     throw new Error("Failed to get filters");

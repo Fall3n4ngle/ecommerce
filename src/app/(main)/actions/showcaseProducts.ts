@@ -2,15 +2,10 @@
 
 import { groq } from "next-sanity";
 import { client } from "../../../../sanity/lib/client";
+import { ShowcaseProduct } from "../types";
 
 type GetShowcaseProductsReturnType = {
-  products: {
-    id: string;
-    name: string;
-    description: string;
-    image: string;
-    slug: string;
-  }[];
+  products: ShowcaseProduct[];
 }[];
 
 export const getShowcaseProducts = async () => {

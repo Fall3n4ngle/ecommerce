@@ -11,3 +11,4 @@ export * from "./Select";
 export * from "./Sheet";
 export * from "./Skeleton";
 export * from "./Toast";
+export * from "./Carousel";

@@ -2,20 +2,14 @@ import { Button } from "@/ui";
 import { shimmer, toBase64 } from "@/common/utils/image";
 import Image from "next/image";
 import Link from "next/link";
-
-type Props = {
-  slug: string;
-  name: string;
-  image: string;
-  description: string;
-};
+import { ShowcaseProduct } from "../../types";
 
 export default function ShowcaseSlide({
   description,
   image,
   name,
   slug,
-}: Props) {
+}: Omit<ShowcaseProduct, "id">) {
   return (
     <div className="relative shrink-0 grow-0 basis-full overflow-hidden rounded-md px-3 py-4 sm:p-6">
       <Image
