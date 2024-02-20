@@ -8,7 +8,7 @@ import {
   Button,
 } from "@/ui";
 import { SlidersHorizontal } from "lucide-react";
-import FiltersForm from "./FiltersForm";
+import FiltersForm from "./FiltersForm/FiltersForm";
 import Sort from "./Sort";
 import { getAllFilters } from "../actions/filters";
 

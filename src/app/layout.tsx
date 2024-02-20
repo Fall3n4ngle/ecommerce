@@ -28,8 +28,8 @@ export default function RootLayout({
 }
 
 export const metadata: Metadata = {
-  title: "Shop name",
-  description: "Shop description",
+  title: "Ecommerce",
+  description: "A fully featured ecommerce app",
   icons: {
     icon: "/favicon.ico",
   },

@@ -12,7 +12,7 @@ import {
   formatOptionsFilter,
   formatOrder,
   formatPriceFilter,
-} from "@/common/utils";
+} from "./utils/filterFormaters";
 
 type Props = {
   searchParams: {

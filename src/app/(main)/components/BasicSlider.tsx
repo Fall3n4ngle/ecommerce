@@ -12,7 +12,7 @@ export default function BasicSlider({ children, options }: Props) {
   const [emblaRef] = useEmblaCarousel(options, [Autoplay()]);
 
   return (
-    <div className="h-[75vh] sm:h-[85vh]">
+    <div className="h-[75vh] sm:h-[85vh] max-h-[600px]">
       <div ref={emblaRef} className="h-full overflow-hidden">
         <div className="backface-hidden flex h-full touch-pan-y gap-3">
           {children}

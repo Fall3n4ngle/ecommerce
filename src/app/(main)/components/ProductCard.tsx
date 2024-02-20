@@ -1,12 +1,12 @@
-import { Category } from "@/common/types";
 import { Card, CardContent, CardFooter } from "@/ui";
 import Image from "next/image";
 import { shimmer, toBase64 } from "@/common/utils";
+import { Filter } from "@/common/types";
 
 type Props = {
   image: string;
   name: string;
-  categories: Category[];
+  categories: Filter[];
   price: number;
 };
 
