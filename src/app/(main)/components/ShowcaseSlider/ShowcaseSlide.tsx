@@ -1,4 +1,4 @@
-import { Button } from "@/ui";
+import { Button, CarouselItem } from "@/ui";
 import { shimmer, toBase64 } from "@/common/utils/image";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +11,7 @@ export default function ShowcaseSlide({
   slug,
 }: Omit<ShowcaseProduct, "id">) {
   return (
-    <div className="relative shrink-0 grow-0 basis-full overflow-hidden rounded-md px-3 py-4 sm:p-6">
+    <CarouselItem className="relative shrink-0 grow-0 basis-full overflow-hidden rounded-md px-3 py-4 sm:p-6">
       <Image
         src={image}
         alt={name}
@@ -46,6 +46,6 @@ export default function ShowcaseSlide({
           </Link>
         </div>
       </div>
-    </div>
+    </CarouselItem>
   );
 }

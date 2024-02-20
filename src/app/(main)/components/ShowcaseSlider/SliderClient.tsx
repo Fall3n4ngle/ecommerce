@@ -14,7 +14,7 @@ export default function SliderClient({ children }: PropsWithChildren) {
         }),
       ]}
     >
-      <CarouselContent className="h-[75vh] max-h-[600px] sm:h-[85vh]">
+      <CarouselContent className="h-[75vh] max-h-[600px] sm:h-[85vh] flex gap-3">
         {children}
       </CarouselContent>
     </Carousel>
