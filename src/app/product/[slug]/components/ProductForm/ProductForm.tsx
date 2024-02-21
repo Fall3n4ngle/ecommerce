@@ -5,9 +5,9 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { Button, Label, Input } from "@/ui";
 import { useShoppingCart } from "use-shopping-cart";
 import { useToast } from "@/common/hooks/useToast";
-import { Check } from "lucide-react";
 import { safeParse } from "valibot";
-import { productDataSchema } from "@/common/validations/productData";
+import { cartItemSchema } from "@/common/validations/cartItem";
+import { ToastMessage } from "@/components";
 
 type Props = Omit<Product, "images"> & {
   image: string;
@@ -20,7 +20,6 @@ export default function ProductForm({
   ...data
 }: Props) {
   const { toast } = useToast();
-
   const { addItem, setItemQuantity, cartDetails } = useShoppingCart();
 
   const [state, setState] = useState({
@@ -61,7 +60,6 @@ export default function ProductForm({
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-
     if (!cartDetails) return;
 
     const newItem = {
@@ -76,7 +74,6 @@ export default function ProductForm({
     };
 
     const cartItem = cartDetails[id];
-    const itemQuantity = cartDetails[id]?.quantity ?? 0;
 
     if (!cartItem) {
       addItem(newItem, {
@@ -87,8 +84,7 @@ export default function ProductForm({
         },
       });
     } else {
-      const validatedData = safeParse(productDataSchema, cartItem.product_data);
-
+      const validatedData = safeParse(cartItemSchema, cartItem.product_data);
       if (!validatedData.success) return;
 
       const { color, size } = validatedData.output;
@@ -102,19 +98,13 @@ export default function ProductForm({
           },
         });
       } else {
+        const itemQuantity = cartItem.quantity;
         setItemQuantity(id, itemQuantity + state.quantity);
       }
     }
 
     toast({
-      description: (
-        <div className="flex items-center gap-3">
-          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary">
-            <Check className="h-5 w-5 text-[#f8f8f7]" />
-          </div>
-          Added to cart
-        </div>
-      ),
+      description: <ToastMessage variant="success" messages="Added to cart" />,
     });
   };
 
@@ -188,7 +178,7 @@ export default function ProductForm({
           </Button>
         </div>
         <Button disabled={cartQuantity + state.quantity > countInStock}>
-          Add to card
+          {countInStock === 0 ? "Out of stock" : "Add to card"}
         </Button>
       </div>
     </form>

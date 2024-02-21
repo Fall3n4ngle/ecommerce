@@ -1,1 +1,1 @@
-export { type ProductData, productDataSchema } from "./productData";
+export { type CartItem as ProductData, cartItemSchema as productDataSchema } from "./cartItem";

@@ -8,9 +8,16 @@ type Props = {
   name: string;
   categories: Filter[];
   price: number;
+  countInStock: number;
 };
 
-export default function ProductCard({ categories, image, name, price }: Props) {
+export default function ProductCard({
+  categories,
+  image,
+  name,
+  price,
+  countInStock,
+}: Props) {
   return (
     <Card className="bg-secondary">
       <CardContent className="p-3">

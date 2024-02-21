@@ -9,7 +9,14 @@ type ResultProduct = {
   image: string;
 } & Pick<
   Product,
-  "categories" | "name" | "id" | "slug" | "price" | "sku" | "currency"
+  | "categories"
+  | "name"
+  | "id"
+  | "slug"
+  | "price"
+  | "sku"
+  | "currency"
+  | "countInStock"
 >;
 
 type GetProductsReturnType = {
@@ -40,7 +47,8 @@ export const getProducts = cache(
             "slug": slug.current
           },
           sku,
-          currency
+          currency,
+          countInStock
         },
         "totalResults": count(*[_type == "product" ${filters}] ${order})
       }`;

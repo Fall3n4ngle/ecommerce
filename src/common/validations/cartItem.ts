@@ -1,9 +1,9 @@
 import { object, string, number, Input } from "valibot";
 
-export const productDataSchema = object({
+export const cartItemSchema = object({
   color: string(),
   size: string(),
   countInStock: number(),
 });
 
-export type ProductData = Input<typeof productDataSchema>;
+export type CartItem = Input<typeof cartItemSchema>;

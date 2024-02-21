@@ -3,33 +3,44 @@ import { Trash } from "lucide-react";
 import { Button, Input } from "@/ui";
 import { ChangeEvent } from "react";
 import { ProductData } from "@/common/validations";
+import { useShoppingCart } from "use-shopping-cart";
+import { useToast } from "@/common/hooks";
+import { ToastMessage } from "@/components";
 
 type Props = {
+  id: string;
   image: string;
   name: string;
   price: number;
   quantity: number;
-  onIncrement: () => void;
-  onDecrement: () => void;
-  onDelete: () => void;
-  setItemQuantity: (quantity: number) => void;
   productData: ProductData;
 };
 
 export default function CartItem({
+  id,
   image,
   name,
   price,
   quantity,
-  onDecrement,
-  onDelete,
-  onIncrement,
-  setItemQuantity,
   productData: { color, countInStock, size },
 }: Props) {
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const { toast } = useToast();
+  const { removeItem, incrementItem, decrementItem, setItemQuantity } =
+    useShoppingCart();
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setItemQuantity(+value);
+    setItemQuantity(id, +value);
+  };
+
+  const handleDelete = () => {
+    removeItem(id);
+
+    toast({
+      description: (
+        <ToastMessage variant="success" messages="Removed from cart" />
+      ),
+    });
   };
 
   return (
@@ -63,7 +74,7 @@ export default function CartItem({
             variant="outline"
             size="sm"
             type="button"
-            onClick={onIncrement}
+            onClick={() => incrementItem(id)}
             disabled={quantity >= countInStock}
           >
             +
@@ -75,19 +86,25 @@ export default function CartItem({
             min={1}
             max={countInStock}
             value={quantity}
-            onChange={onChange}
+            onChange={handleChange}
           />
           <Button
             variant="outline"
             size="sm"
             type="button"
-            onClick={onDecrement}
+            onClick={() => decrementItem(id)}
             disabled={quantity <= 1}
           >
             -
           </Button>
         </div>
-        <Button variant="secondary" size="sm" type="button" onClick={onDelete}>
+        <Button
+          variant="secondary"
+          className="hover:bg-destructive"
+          size="sm"
+          type="button"
+          onClick={handleDelete}
+        >
           <Trash className="h-[1rem] w-[1rem]" />
         </Button>
       </div>
