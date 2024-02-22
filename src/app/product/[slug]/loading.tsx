@@ -17,8 +17,8 @@ export default function Loading() {
         </div>
       </div>
       <div className="sm:col-start-2 sm:col-end-4 lg:pt-12">
-        <Skeleton className="mb-2 h-9 w-60" />
-        <Skeleton className="mb-6 h-8 w-20" />
+        <Skeleton className="mb-3 h-9 w-60" />
+        <Skeleton className="mb-8 h-8 w-20" />
         <Skeleton className="mb-2 h-7 w-14" />
         <div className="mb-4 flex items-center gap-3">
           <Skeleton className="h-10 w-20" />
@@ -28,7 +28,7 @@ export default function Loading() {
         <Skeleton className="mb-2 h-7 w-14" />
         <Skeleton className="mb-4 h-10 w-20" />
         <Skeleton className="mb-2 h-7 w-14" />
-        <div className="mb-6 flex items-center gap-3">
+        <div className="mb-8 flex items-center gap-3">
           <Skeleton className="h-10 w-24" />
           <Skeleton className="h-10 w-24" />
         </div>
