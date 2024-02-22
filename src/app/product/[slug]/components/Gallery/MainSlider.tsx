@@ -42,7 +42,7 @@ export default function MainSlider({
             className="relative shrink-0 grow-0 basis-full overflow-hidden pt-[100%]"
           >
             <Image
-              src={`${urlForImage(image).url()}`}
+              src={urlForImage(image).url()}
               alt={name}
               fill
               priority

@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import {
   FiltersCard,
   Sort,
@@ -73,3 +74,9 @@ export default async function Home({
     </>
   );
 }
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};

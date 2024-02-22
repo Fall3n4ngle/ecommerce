@@ -7,6 +7,7 @@ import { cache } from "react";
 
 type ResultProduct = {
   image: string;
+  _updatedAt: Date
 } & Pick<
   Product,
   | "categories"
@@ -48,7 +49,8 @@ export const getProducts = cache(
           },
           sku,
           currency,
-          countInStock
+          countInStock,
+          _updatedAt 
         },
         "totalResults": count(*[_type == "product" ${filters}] ${order})
       }`;

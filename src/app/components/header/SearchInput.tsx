@@ -24,7 +24,7 @@ export default function SearchInput() {
     <Input
       value={query}
       onChange={(e) => setQuery(e.target.value)}
-      placeholder="Filter products by name..."
+      placeholder="Search products ..."
       className="w-full"
       onClick={handleScroll}
       onFocusCapture={handleScroll}

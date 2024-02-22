@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Header, Cart } from "@/app/components";
 import { Providers } from "@/providers";
+import type { Viewport } from "next";
 
 import "./globals.css";
 
@@ -28,9 +29,25 @@ export default function RootLayout({
 }
 
 export const metadata: Metadata = {
-  title: "Ecommerce",
-  description: "A fully featured ecommerce app",
-  icons: {
-    icon: "/favicon.ico",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
+  title: {
+    default: "Ecommerce",
+    template: "%s - Ecommerce",
   },
+  description:
+    "Discover the latest in fashion at our store! Unleash your style with our unique, high-quality clothing for affordable prices",
+  twitter: {
+    card: "summary_large_image",
+  },
+  keywords: [
+    "Online Clothing Shop, Women's Apparel, Men's Apparel, Kids' Clothing, Fashion Accessories, Trendy Outfits, Summer Dresses, Winter Coats, Designer Clothing, Affordable Fashion",
+  ],
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f97316" },
+    { media: "(prefers-color-scheme: dark)", color: "#ea580c" },
+  ],
+  colorScheme: "dark light",
 };

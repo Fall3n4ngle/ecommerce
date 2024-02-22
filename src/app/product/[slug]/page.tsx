@@ -3,6 +3,7 @@ import { getProductBySlug } from "./actions/product";
 import { Metadata } from "next";
 import { urlForImage } from "../../../../sanity/lib/image";
 import { notFound } from "next/navigation";
+import { shortenString } from "@/common/utils";
 
 type Props = {
   params: {
@@ -51,15 +52,16 @@ export default async function Product({ params: { slug } }: Props) {
 
 export async function generateMetadata({ params: { slug } }: Props) {
   const product = await getProductBySlug(slug);
-
-  if (!product) {
-    return notFound();
-  }
+  if (!product) notFound();
 
   const { name, description } = product;
 
   return {
     title: name,
-    description: description.slice(0, 160),
+    description: shortenString({ string: description, maxLength: 157 }),
+    alternates: {
+      canonical: `/product/${slug}`,
+    },
+    keywords: product.categories.map((c) => c.name),
   } as Metadata;
 }

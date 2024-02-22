@@ -1,5 +1,6 @@
 import { CheckoutSession } from "@/app/success/components";
 import { stripe } from "@/lib/stripe";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 type Props = {
@@ -21,3 +22,11 @@ export default async function Success({ searchParams: { session_id } }: Props) {
     </div>
   );
 }
+
+export const metadata: Metadata = {
+  title: "Success",
+  robots: {
+    index: false,
+    follow: true,
+  },
+};

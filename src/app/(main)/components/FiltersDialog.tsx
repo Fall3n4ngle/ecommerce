@@ -18,9 +18,11 @@ export default async function FiltersDialog() {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button variant="outline">
-          <SlidersHorizontal className="mr-2 h-5 w-5" />
-          Filters
+        <Button variant="outline" asChild>
+          <span>
+            <SlidersHorizontal className="mr-2 h-5 w-5" />
+            Filters
+          </span>
         </Button>
       </DialogTrigger>
       <DialogContent>
