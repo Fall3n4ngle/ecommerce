@@ -23,8 +23,8 @@ export default async function TotalResults({
   });
 
   return (
-    <h3 className="text-xl font-semibold text-muted-foreground">
+    <p className="text-xl font-semibold text-muted-foreground">
       {totalResults} Results
-    </h3>
+    </p>
   );
 }

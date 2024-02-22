@@ -33,7 +33,7 @@ export default function ProductCard({
             )}`}
           />
         </div>
-        <h2 className="text-lg font-semibold">{name}</h2>
+        <h3 className="text-lg font-semibold">{name}</h3>
         <p className="mb-2">
           {categories.slice(0, 3).map((category) => (
             <span

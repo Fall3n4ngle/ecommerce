@@ -46,8 +46,7 @@ export default function MainSlider({
               alt={name}
               fill
               priority
-              className="rounded-md"
-              objectFit="cover"
+              className="rounded-md object-cover"
               placeholder="blur"
               blurDataURL={`data:image/svg+xml;base64,${toBase64(
                 shimmer(225, 280),

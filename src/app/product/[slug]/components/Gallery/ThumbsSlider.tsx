@@ -46,10 +46,9 @@ export default function ThumbsSlider({
               src={urlForImage(image).url()}
               alt={`${name} image #${index + 1}`}
               fill
-              className={cn("rounded-md", {
+              className={cn("rounded-md object-cover", {
                 "border-2 border-primary": index === activeSlide,
               })}
-              objectFit="cover"
               placeholder="blur"
               blurDataURL={`data:image/svg+xml;base64,${toBase64(
                 shimmer(225, 280),

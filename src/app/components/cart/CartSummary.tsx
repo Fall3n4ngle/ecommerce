@@ -34,7 +34,7 @@ export default function CartSummary() {
   return (
     <div>
       <div className="mb-2 flex items-center justify-between">
-        <span className="font-semibold">Shipment:</span>
+        <strong className="font-semibold">Shipment:</strong>
         <span>
           {formatCurrencyString({
             value: shipmentAmount,
@@ -43,7 +43,7 @@ export default function CartSummary() {
         </span>
       </div>
       <div className="mb-4 flex items-center justify-between">
-        <span className="font-semibold">Total:</span>
+        <strong className="font-semibold">Total:</strong>
         <span>
           {formatCurrencyString({
             value: totalAmount,

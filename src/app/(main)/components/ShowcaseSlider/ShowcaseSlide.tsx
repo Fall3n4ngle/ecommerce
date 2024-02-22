@@ -16,19 +16,17 @@ export default function ShowcaseSlide({
         src={image}
         alt={name}
         fill
-        className="brightness-50 lg:brightness-[35%]"
-        objectFit="cover"
+        className="object-cover brightness-50 lg:brightness-[35%]"
         placeholder="blur"
         blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(225, 280))}`}
       />
       <div className="flex h-full items-end gap-6 lg:items-center lg:px-16">
-        <div className="relative hidden basis-1/3 pt-[37%] lg:block">
+        <div className="relative hidden basis-1/3 overflow-hidden pt-[37%] lg:block">
           <Image
             src={image}
             alt={name}
             fill
-            className="rounded-md"
-            objectFit="cover"
+            className="rounded-md object-cover"
             placeholder="blur"
             priority
             blurDataURL={`data:image/svg+xml;base64,${toBase64(

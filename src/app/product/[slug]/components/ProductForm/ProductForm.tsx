@@ -1,12 +1,15 @@
 "use client";
 
-import { Filter, Product } from "@/common/types";
-import { ChangeEvent, FormEvent, useState } from "react";
-import { Button, Label, Input } from "@/ui";
+import { Product } from "@/common/types";
+import { useForm } from "react-hook-form";
+import { ProductFormFields } from "../../types/ProductFormFields";
+import { Button, Form } from "@/ui";
+import FiltersGroup from "./FiltersGroup";
+import QuantityChanger from "./QuantityPicker";
 import { useShoppingCart } from "use-shopping-cart";
-import { useToast } from "@/common/hooks/useToast";
 import { safeParse } from "valibot";
 import { cartItemSchema } from "@/common/validations/cartItem";
+import { useToast } from "@/common/hooks";
 import { ToastMessage } from "@/components";
 
 type Props = Omit<Product, "images"> & {
@@ -20,15 +23,17 @@ export default function ProductForm({
   ...data
 }: Props) {
   const { toast } = useToast();
-  const { addItem, setItemQuantity, cartDetails } = useShoppingCart();
+  const { cartDetails, addItem, setItemQuantity } = useShoppingCart();
 
-  const [state, setState] = useState({
-    color: colors[0].slug,
-    size: sizes[0].slug,
-    quantity: 1,
+  const form = useForm<ProductFormFields>({
+    defaultValues: {
+      size: sizes[0].slug,
+      color: colors[0].slug,
+      quantity: 1,
+    },
   });
 
-  const id = `${data.id}-${state.color}-${state.size}`;
+  if (!cartDetails) return null;
 
   const cartQuantity = Object.keys(cartDetails!).reduce((acc, curr) => {
     if (curr.includes(data.id)) {
@@ -38,149 +43,89 @@ export default function ProductForm({
     return acc;
   }, 0);
 
-  const handleDecrement = () => {
-    setState((prev) => ({ ...prev, quantity: state.quantity - 1 }));
-  };
+  const toastSuccess = () =>
+    toast({
+      description: <ToastMessage variant="success" messages="Added to cart" />,
+    });
 
-  const handleIncrement = () => {
-    setState((prev) => ({ ...prev, quantity: state.quantity + 1 }));
-  };
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setState((prev) => ({ ...prev, quantity: +e.target.value }));
-  };
-
-  const handleSizeChange = ({ slug }: Filter) => {
-    setState((prev) => ({ ...prev, size: slug }));
-  };
-
-  const handleColorChange = ({ slug }: Filter) => {
-    setState((prev) => ({ ...prev, color: slug }));
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (!cartDetails) return;
+  const onSubmit = ({ color, quantity, size }: ProductFormFields) => {
+    const id = `${data.id}-${color}-${size}`;
+    const cartItem = cartDetails[id];
 
     const newItem = {
       ...data,
       id,
       product_data: {
-        size: state.size,
-        color: state.color,
+        size,
+        color,
         countInStock,
         slug: data.slug,
       },
     };
 
-    const cartItem = cartDetails[id];
+    const itemToAdd = {
+      count: quantity,
+      product_metadata: {
+        size,
+        color,
+      },
+    };
 
     if (!cartItem) {
-      addItem(newItem, {
-        count: state.quantity,
-        product_metadata: {
-          size: state.size,
-          color: state.color,
-        },
-      });
-    } else {
-      const validatedData = safeParse(cartItemSchema, cartItem.product_data);
-      if (!validatedData.success) return;
-
-      const { color, size } = validatedData.output;
-
-      if (color !== state.color || size !== state.size) {
-        addItem(newItem, {
-          count: state.quantity,
-          product_metadata: {
-            size: state.size,
-            color: state.color,
-          },
-        });
-      } else {
-        const itemQuantity = cartItem.quantity;
-        setItemQuantity(id, itemQuantity + state.quantity);
-      }
+      addItem(newItem, itemToAdd);
+      toastSuccess();
+      return;
     }
 
-    toast({
-      description: <ToastMessage variant="success" messages="Added to cart" />,
-    });
+    const validatedData = safeParse(cartItemSchema, cartItem.product_data);
+
+    if (!validatedData.success) {
+      toast({
+        description: (
+          <ToastMessage variant="success" messages="Added to cart" />
+        ),
+      });
+
+      return;
+    }
+
+    if (
+      validatedData.output.color !== color ||
+      validatedData.output.size !== size
+    ) {
+      addItem(newItem, itemToAdd);
+    } else {
+      setItemQuantity(id, cartItem.quantity + quantity);
+    }
+
+    toastSuccess();
   };
 
+  const quantity = form.watch("quantity");
+
   return (
-    <form onSubmit={handleSubmit}>
-      {sizes.length > 0 ? (
-        <>
-          <p className="mb-2 text-lg font-semibold">Size:</p>
-          <div className="mb-4 flex items-center gap-3">
-            {sizes.map((size) => (
-              <Button
-                key={size.id}
-                onClick={() => handleSizeChange(size)}
-                variant={size.slug === state.size ? "default" : "secondary"}
-                type="button"
-              >
-                {size.name}
-              </Button>
-            ))}
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        {sizes.length > 0 && (
+          <div className="mb-5">
+            <FiltersGroup name="size" filters={sizes} label="Size:" />
           </div>
-        </>
-      ) : null}
-      {colors.length > 0 ? (
-        <>
-          <p className="mb-2 text-lg font-semibold">Color:</p>
-          <div className="mb-4 flex items-center gap-3">
-            {colors.map((color) => (
-              <Button
-                key={color.id}
-                onClick={() => handleColorChange(color)}
-                variant={color.slug === state.color ? "default" : "secondary"}
-                type="button"
-              >
-                {color.name}
-              </Button>
-            ))}
+        )}
+        {colors.length > 0 && (
+          <div className="mb-5">
+            <FiltersGroup name="color" filters={colors} label="Color:" />
           </div>
-        </>
-      ) : null}
-      <Label htmlFor="quantity" className="text-lg font-semibold">
-        Quantity:
-      </Label>
-      <div className="mt-2 flex items-center gap-5">
-        <div className="flex items-center">
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={handleIncrement}
-            disabled={cartQuantity + state.quantity >= countInStock}
-            type="button"
-          >
-            +
-          </Button>
-          <Input
-            type="number"
-            id="quantity"
-            className="hide-controls w-12 appearance-none text-center focus-visible:ring-0"
-            min={1}
-            max={countInStock - cartQuantity}
-            value={state.quantity}
-            onChange={handleChange}
+        )}
+        <div className="flex items-end gap-5">
+          <QuantityChanger
+            countInStock={countInStock}
+            cartQuantity={cartQuantity}
           />
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={handleDecrement}
-            disabled={state.quantity === 1}
-            type="button"
-          >
-            -
+          <Button disabled={cartQuantity + quantity > countInStock}>
+            {countInStock === 0 ? "Out of stock" : "Add to cart"}
           </Button>
         </div>
-        <Button disabled={cartQuantity + state.quantity > countInStock}>
-          {countInStock === 0 ? "Out of stock" : "Add to card"}
-        </Button>
-      </div>
-    </form>
+      </form>
+    </Form>
   );
 }

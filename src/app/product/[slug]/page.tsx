@@ -27,11 +27,11 @@ export default async function Product({ params: { slug } }: Props) {
           <Gallery name={name} images={images} />
         </div>
         <div className="sm:col-start-2 sm:col-end-4 lg:pt-12">
-          <h2 className="mb-2 text-3xl font-bold">{name}</h2>
-          <p className="mb-6 text-2xl font-semibold text-primary">
+          <h2 className="mb-3 text-3xl font-bold">{name}</h2>
+          <p className="mb-8 text-2xl font-semibold leading-none text-primary">
             ${price / 100}
           </p>
-          <div className="mb-6">
+          <div className="mb-8">
             <ProductForm
               name={name}
               image={urlForImage(images[0]).url()}
@@ -40,7 +40,7 @@ export default async function Product({ params: { slug } }: Props) {
               {...data}
             />
           </div>
-          <h3 className="mb-2 text-lg font-semibold">Description:</h3>
+          <h3 className="mb-2 text-xl font-semibold">Description:</h3>
           <p className="mb-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
             {description}
           </p>
