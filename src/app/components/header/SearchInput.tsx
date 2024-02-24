@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react";
 
 export default function SearchInput() {
   const { setQueryParams, queryParams } = useQueryParams();
-  const initialRender = useRef(true);
+  const query = queryParams.get("search");
 
-  const [query, setQuery] = useState(queryParams.get("search") ?? "");
-  const debouncedQuery = useDebounce(query);
+  const [stateQuery, setQuery] = useState(query ?? "");
+  const debouncedQuery = useDebounce(stateQuery);
 
   const handleScroll = () => {
     const element = document.getElementById("search-view");
@@ -16,20 +16,18 @@ export default function SearchInput() {
   };
 
   useEffect(() => {
-    if (initialRender.current) {
-      initialRender.current = false;
-      return;
+    if (query !== debouncedQuery) {
+      setQueryParams({
+        search: debouncedQuery,
+        page: 1,
+      });
     }
-
-    setQueryParams({
-      search: debouncedQuery,
-      page: 1,
-    });
   }, [debouncedQuery, setQueryParams]);
 
   return (
     <Input
-      value={query}
+      id="search"
+      value={stateQuery}
       onChange={(e) => setQuery(e.target.value)}
       placeholder="Search products..."
       className="w-full"
