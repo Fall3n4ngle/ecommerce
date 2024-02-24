@@ -18,13 +18,15 @@ export default function Header() {
   };
 
   if (pathname.includes("/studio")) return null;
-  const searchInput = pathname === "/" ? <SearchInput /> : null;
+  const isOnProductsPage = pathname === "/";
 
   let content;
   if (searchActive) {
     content = (
       <div className="flex items-center justify-center gap-2">
-        <div className="w-full max-w-[500px]">{searchInput}</div>
+        <div className="w-full max-w-[500px]">
+          <SearchInput />
+        </div>
         <Button variant="outline" size="icon" onClick={handleSearchClose}>
           <X className="h-[1.2rem] w-[1.2rem]" />
         </Button>
@@ -35,17 +37,19 @@ export default function Header() {
       <div className="flex items-center justify-between gap-4">
         <Logo />
         <div className="hidden w-full max-w-[500px] sm:block">
-          {searchInput}
+          {isOnProductsPage ? <SearchInput /> : null}
         </div>
         <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => setSearchActive(true)}
-            className="sm:hidden"
-          >
-            <Search className="h-[1.2rem] w-[1.2rem]" />
-          </Button>
+          {isOnProductsPage ? (
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setSearchActive(true)}
+              className="sm:hidden"
+            >
+              <Search className="h-[1.2rem] w-[1.2rem]" />
+            </Button>
+          ) : null}
           <CartButton />
           <ModeToggle />
         </div>

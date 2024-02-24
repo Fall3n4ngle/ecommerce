@@ -1,9 +1,9 @@
+import { shimmer, toBase64 } from "@/common/utils";
 import { Carousel, CarouselApi, CarouselContent, CarouselItem } from "@/ui";
 import Image from "next/image";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Image as TImage } from "sanity";
 import { urlForImage } from "../../../../../../sanity/lib/image";
-import { shimmer, toBase64 } from "@/common/utils";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 type Props = {
   name: string;

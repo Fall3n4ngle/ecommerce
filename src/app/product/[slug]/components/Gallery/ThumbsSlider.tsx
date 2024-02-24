@@ -31,9 +31,18 @@ export default function ThumbsSlider({
       opts={{
         containScroll: "keepSnaps",
         dragFree: true,
+        breakpoints: {
+          "(min-width: 640px)": {
+            axis: "y",
+          },
+          "(min-width: 1024px)": {
+            axis: "x",
+          },
+        },
       }}
+      className="h-full"
     >
-      <CarouselContent className="flex gap-3">
+      <CarouselContent className="flex gap-3 sm:flex-col lg:flex-row h-full">
         {images.map((image, index) => (
           <CarouselItem
             key={index}

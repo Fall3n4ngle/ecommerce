@@ -7,16 +7,14 @@ import { Toaster } from "./Toaster";
 
 export default function Providers({ children }: PropsWithChildren) {
   return (
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <CartProvider>
-          {children}
-          <Toaster />
-        </CartProvider>
-      </ThemeProvider>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <CartProvider>{children}</CartProvider>
+      <Toaster />
+    </ThemeProvider>
   );
 }

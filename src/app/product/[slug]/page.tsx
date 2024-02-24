@@ -22,11 +22,11 @@ export default async function Product({ params: { slug } }: Props) {
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-9 sm:grid-cols-3">
-        <div>
+      <div className="grid grid-cols-1 gap-9 lg:grid-cols-3">
+        <div className="">
           <Gallery name={name} images={images} />
         </div>
-        <div className="sm:col-start-2 sm:col-end-4 lg:pt-12">
+        <div className="lg:col-start-2 lg:col-end-4 lg:pt-12">
           <h2 className="mb-3 text-3xl font-bold">{name}</h2>
           <p className="mb-8 text-2xl font-semibold leading-none text-primary">
             ${price / 100}
