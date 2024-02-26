@@ -4,8 +4,7 @@ import { Button, Input } from "@/ui";
 import { ChangeEvent } from "react";
 import { ProductData } from "@/common/validations";
 import { useShoppingCart } from "use-shopping-cart";
-import { useToast } from "@/common/hooks";
-import { ToastMessage } from "@/components";
+import { toast } from "sonner";
 
 type Props = {
   id: string;
@@ -24,7 +23,6 @@ export default function CartItem({
   quantity,
   productData: { color, countInStock, size },
 }: Props) {
-  const { toast } = useToast();
   const { removeItem, incrementItem, decrementItem, setItemQuantity } =
     useShoppingCart();
 
@@ -35,12 +33,7 @@ export default function CartItem({
 
   const handleDelete = () => {
     removeItem(id);
-
-    toast({
-      description: (
-        <ToastMessage variant="success" messages="Removed from cart" />
-      ),
-    });
+    toast.success("Removed from cart");
   };
 
   return (

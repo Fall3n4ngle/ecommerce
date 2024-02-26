@@ -2,11 +2,10 @@ import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
 import { Button } from "@/ui";
 import { useTransition } from "react";
 import { checkout } from "@/app/actions/checkout";
-import { useToast } from "@/common/hooks";
+import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
 export default function CartSummary() {
-  const { toast } = useToast();
   const { cartCount, totalPrice, cartDetails, redirectToCheckout } =
     useShoppingCart();
 
@@ -20,10 +19,8 @@ export default function CartSummary() {
       const result = await redirectToCheckout(session.id);
 
       if (result.error) {
-        toast({
-          title: "An error occured",
-          description: "Error redirecting to checkout",
-          variant: "destructive",
+        toast.error("An error occured", {
+          description: "Failed to redirect to checkout",
         });
       }
     });
