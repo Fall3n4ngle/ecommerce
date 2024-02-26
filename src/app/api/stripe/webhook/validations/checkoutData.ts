@@ -28,5 +28,6 @@ export const productDataSchema = object({
   metadata: object({
     size: string(),
     color: string(),
+    id: string(),
   }),
 });

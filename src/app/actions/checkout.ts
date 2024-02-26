@@ -27,12 +27,13 @@ export const checkout = async (cartDetails: CartDetails) => {
         },
       ],
       billing_address_collection: "auto",
-      success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/`,
     });
 
     return session;
   } catch (error: any) {
-    throw new Error(`Error processing checkout: ${error.message}`);
+    const message = (error as Error).message ?? "Failed to process checkout";
+    throw new Error(message);
   }
 };

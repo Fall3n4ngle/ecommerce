@@ -1,3 +1,5 @@
+"use server";
+
 import { groq } from "next-sanity";
 import { Product } from "@/common/types";
 import { cache } from "react";
@@ -20,8 +22,7 @@ export const getProductBySlug = cache(async (slug: string) => {
     }
   `;
 
-    const params = { slug };
-    const product: Product = await client.fetch(query, params);
+    const product: Product = await client.fetch(query, { slug });
 
     return product;
   } catch (error) {

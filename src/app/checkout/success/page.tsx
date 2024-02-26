@@ -1,4 +1,4 @@
-import { CheckoutSession } from "@/app/success/components";
+import { CheckoutSession } from "./components";
 import { stripe } from "@/lib/stripe";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -17,16 +17,13 @@ export default async function Success({ searchParams: { session_id } }: Props) {
   }
 
   return (
-    <div className="h-full pt-[5%]">
-      <CheckoutSession customerDetails={checkoutSession.customer_details} />
-    </div>
+    <CheckoutSession
+      name={checkoutSession.customer_details.name ?? "Customer"}
+      email={checkoutSession.customer_details.email ?? ""}
+    />
   );
 }
 
 export const metadata: Metadata = {
   title: "Success",
-  robots: {
-    index: false,
-    follow: true,
-  },
 };

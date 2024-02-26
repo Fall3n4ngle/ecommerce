@@ -42,6 +42,7 @@ export const validateCartItems = (
           description: inventoryItem.description,
           images: [cartDetails[id].image],
           metadata: {
+            id: inventoryItem.id,
             size: productData.output.size,
             color: productData.output.color,
           },

@@ -68,6 +68,7 @@ export default function ProductForm({
       product_metadata: {
         size,
         color,
+        id: data.id,
       },
     };
 
