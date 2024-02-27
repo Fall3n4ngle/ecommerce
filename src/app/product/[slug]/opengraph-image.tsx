@@ -2,6 +2,7 @@ import { ImageResponse } from "next/og";
 import { getProductBySlug } from "./actions/product";
 import { notFound } from "next/navigation";
 import { urlForImage } from "../../../../sanity/lib/image";
+import Image from "next/image";
 
 export const alt = "Ecommerce";
 
@@ -18,14 +19,14 @@ type Props = {
   };
 };
 
-export default async function Image({ params: { slug } }: Props) {
+export default async function OGImage({ params: { slug } }: Props) {
   const product = await getProductBySlug(slug);
   if (!product) notFound();
 
   return new ImageResponse(
     (
       <div tw="flex items-center justify-center w-full h-full relative overflow-hidden">
-        <img
+        <Image
           src={urlForImage(product.images[0]).url()}
           alt="Ecommerce"
           tw="absolute top-0 left-0 w-full h-full object-cover brightness-50"
