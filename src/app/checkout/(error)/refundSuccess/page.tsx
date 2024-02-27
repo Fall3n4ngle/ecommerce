@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/ui";
 import { Metadata } from "next";
 import Link from "next/link";

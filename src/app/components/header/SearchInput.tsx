@@ -22,7 +22,7 @@ export default function SearchInput() {
         page: 1,
       });
     }
-  }, [debouncedQuery, setQueryParams]);
+  }, [debouncedQuery, setQueryParams, query]);
 
   return (
     <Input

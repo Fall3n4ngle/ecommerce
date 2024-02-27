@@ -20,5 +20,3 @@ export type Product = {
   currency: string;
   sku: string;
 };
-
-

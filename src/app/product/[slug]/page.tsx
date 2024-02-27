@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { urlForImage } from "../../../../sanity/lib/image";
 import { notFound } from "next/navigation";
 import { shortenString } from "@/common/utils";
+import { getProducts } from "@/common/actions/products";
 
 type Props = {
   params: {
@@ -48,6 +49,14 @@ export default async function Product({ params: { slug } }: Props) {
       </div>
     </>
   );
+}
+
+export async function generateStaticParams() {
+  const products = await getProducts({});
+
+  return products.data.slice(0, 9).map((product) => ({
+    slug: product.slug,
+  }));
 }
 
 export async function generateMetadata({ params: { slug } }: Props) {

@@ -1,2 +1,2 @@
-export * from "./formFilter";
+export * from "./FormFilter";
 export * from "./ShowcaseProduct"

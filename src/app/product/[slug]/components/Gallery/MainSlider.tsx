@@ -26,7 +26,7 @@ export default function MainSlider({
     api.on("select", () => {
       setActiveSlide(api.selectedScrollSnap());
     });
-  }, [api]);
+  }, [api, setActiveSlide]);
 
   useEffect(() => {
     if (!api) return;

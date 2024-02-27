@@ -9,7 +9,7 @@ import {
   Label,
 } from "@/ui";
 import { CheckedState } from "@radix-ui/react-checkbox";
-import { FormFilter } from "../../types/formFilter";
+import { FormFilter } from "../../types/FormFilter";
 
 type Props = {
   filters: FormFilter[];

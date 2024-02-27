@@ -3,7 +3,6 @@ import { productsPerPage } from "../../const/perPage";
 import Link from "next/link";
 import Pagination from "./Pagination";
 import ProductCard from "./ProductCard";
-import { unstable_noStore as noStore } from "next/cache";
 
 type Props = {
   filters: string;
@@ -16,8 +15,6 @@ export default async function ProductsList({
   filters,
   order,
 }: Props) {
-  noStore();
-
   const { data: products, totalResults } = await getProducts({
     order,
     filters,

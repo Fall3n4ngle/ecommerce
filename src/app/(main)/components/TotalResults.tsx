@@ -1,6 +1,5 @@
 import { getProducts } from "@/common/actions/products";
 import { productsPerPage } from "../const/perPage";
-import { unstable_noStore as noStore } from "next/cache";
 
 type Props = {
   filters: string;
@@ -13,8 +12,6 @@ export default async function TotalResults({
   filters,
   order,
 }: Props) {
-  noStore();
-
   const { totalResults } = await getProducts({
     order,
     filters,

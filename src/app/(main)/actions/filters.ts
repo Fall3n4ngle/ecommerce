@@ -4,7 +4,8 @@ import { groq } from "next-sanity";
 import { Filter } from "@/common/types";
 import { client } from "../../../../sanity/lib/client";
 import { cache } from "react";
-import { FormFilter } from "../types/formFilter";
+import { FormFilter } from "../types";
+import { tags } from "@/common/const";
 
 const getCategoies = async () => {
   const query = groq`
@@ -15,7 +16,14 @@ const getCategoies = async () => {
     }
     `;
 
-  const categories: Filter[] = await client.fetch(query);
+  const categories: Filter[] = await client.fetch(
+    query,
+    {},
+    {
+      cache: "force-cache",
+      next: { tags: [tags.category] },
+    },
+  );
 
   return {
     title: "Categories",
@@ -33,7 +41,14 @@ const getSizes = async () => {
     }
     `;
 
-  const sizes: Filter[] = await client.fetch(query);
+  const sizes: Filter[] = await client.fetch(
+    query,
+    {},
+    {
+      cache: "force-cache",
+      next: { tags: [tags.size] },
+    },
+  );
 
   return {
     title: "Sizes",
@@ -51,7 +66,14 @@ const getColors = async () => {
     }
     `;
 
-  const colors: Filter[] = await client.fetch(query);
+  const colors: Filter[] = await client.fetch(
+    query,
+    {},
+    {
+      cache: "force-cache",
+      next: { tags: [tags.color] },
+    },
+  );
 
   return {
     title: "Colors",

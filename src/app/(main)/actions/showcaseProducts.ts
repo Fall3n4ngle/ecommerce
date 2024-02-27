@@ -3,6 +3,7 @@
 import { groq } from "next-sanity";
 import { client } from "../../../../sanity/lib/client";
 import { ShowcaseProduct } from "../types";
+import { tags } from "@/common/const";
 
 type GetShowcaseProductsReturnType = {
   products: ShowcaseProduct[];
@@ -22,8 +23,15 @@ export const getShowcaseProducts = async () => {
   }
   `;
 
-    const [{ products }]: GetShowcaseProductsReturnType =
-      await client.fetch(query);
+    const [{ products }]: GetShowcaseProductsReturnType = await client.fetch(
+      query,
+      {},
+      {
+        cache: "force-cache",
+        next: { tags: [tags.showcaseProducts] },
+      },
+    );
+    
     return products;
   } catch (error) {
     throw new Error("Failed to get showcase products");
