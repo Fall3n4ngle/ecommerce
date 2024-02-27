@@ -12,11 +12,12 @@ type Props = {
 };
 
 export default function CheckoutSession({ name, email }: Props) {
-  const { clearCart } = useShoppingCart();
+  const { clearCart, cartCount } = useShoppingCart();
 
   useEffect(() => {
+    if (cartCount === 0) return;
     clearCart();
-  }, [clearCart]);
+  }, [cartCount]);
 
   return (
     <div className="flex h-full flex-col items-center justify-center gap-8">

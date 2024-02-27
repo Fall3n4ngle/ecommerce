@@ -5,22 +5,22 @@ import { Instagram, Youtube, Twitter, Facebook } from "lucide-react";
 export default function SocialIcons() {
   return (
     <div className="flex w-full items-center justify-center gap-2">
-      <Link href="https://www.instagram.com/">
+      <Link href="https://www.instagram.com/" target="_blank">
         <Button variant="link" size="icon" aria-label="instagram">
           <Instagram />
         </Button>
       </Link>
-      <Link href="https://www.youtube.com/">
+      <Link href="https://www.youtube.com/" target="_blank">
         <Button variant="link" size="icon" aria-label="youtube">
           <Youtube />
         </Button>
       </Link>
-      <Link href="https://www.twitter.com/">
+      <Link href="https://www.twitter.com/" target="_blank">
         <Button variant="link" size="icon" aria-label="twitter">
           <Twitter />
         </Button>
       </Link>
-      <Link href="https://www.twitter.com/">
+      <Link href="https://www.twitter.com/" target="_blank">
         <Button variant="link" size="icon" aria-label="twitter">
           <Facebook />
         </Button>

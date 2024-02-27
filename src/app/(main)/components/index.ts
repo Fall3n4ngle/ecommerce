@@ -4,3 +4,4 @@ export { default as Sort } from "./Sort";
 export { default as FiltersDialog } from "./FiltersDialog";
 export { ProductsList } from "./Products";
 export { default as TotalResults } from "./TotalResults";
+export { default as SocialIcons } from "./SocialIcons";

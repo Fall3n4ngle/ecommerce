@@ -12,8 +12,12 @@ export default function FiltersForm({ filters }: Props) {
   return (
     <>
       <FiltersAccordion filters={filters} />
-      <span className="block py-4 text-base leading-none">Price (min-max)</span>
-      <PriceRange />
+      <div>
+        <span className="block py-4 text-base leading-none font-medium">
+          Price (min-max)
+        </span>
+        <PriceRange />
+      </div>
     </>
   );
 }

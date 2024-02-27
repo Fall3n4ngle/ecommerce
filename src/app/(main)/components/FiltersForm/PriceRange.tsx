@@ -28,7 +28,7 @@ export default function PriceRange() {
   }, [debouncedPriceRange, setQueryParams]);
 
   return (
-    <div className="flex w-full items-center justify-between gap-2">
+    <div className="flex w-full items-center gap-8 md:gap-2">
       <label htmlFor="min" className="sr-only">
         Min value
       </label>

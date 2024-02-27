@@ -11,10 +11,7 @@ type Props = {
 
 export default async function Success({ searchParams: { session_id } }: Props) {
   const checkoutSession = await stripe.checkout.sessions.retrieve(session_id);
-
-  if (!checkoutSession.customer_details) {
-    return notFound();
-  }
+  if (!checkoutSession.customer_details) notFound();
 
   return (
     <CheckoutSession

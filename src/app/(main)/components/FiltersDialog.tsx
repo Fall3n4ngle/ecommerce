@@ -9,8 +9,8 @@ import {
 } from "@/ui";
 import { SlidersHorizontal } from "lucide-react";
 import FiltersForm from "./FiltersForm/FiltersForm";
-import Sort from "./Sort";
 import { getAllFilters } from "../actions/filters";
+import Sort from "./Sort";
 
 export default async function FiltersDialog() {
   const filters = await getAllFilters();
@@ -21,21 +21,24 @@ export default async function FiltersDialog() {
         <Button variant="outline" asChild>
           <span>
             <SlidersHorizontal className="mr-2 h-5 w-5" />
-            Filters
+            Settings
           </span>
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Filters</DialogTitle>
+          <DialogTitle className="text-lg">Settings</DialogTitle>
+          <DialogDescription>
+            Narrow your search using settings below
+          </DialogDescription>
         </DialogHeader>
-        <DialogDescription>
-          Narrow your search using filters below
-        </DialogDescription>
-        <div className="flex flex-col gap-4">
-          <FiltersForm filters={filters} />
+        <div className="flex items-center gap-4">
+          <span className="block py-4 text-base font-medium leading-none">
+            Sort by:
+          </span>
           <Sort />
         </div>
+        <FiltersForm filters={filters} />
       </DialogContent>
     </Dialog>
   );

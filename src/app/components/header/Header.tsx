@@ -2,7 +2,7 @@
 
 import Logo from "./Logo";
 import { ModeToggle } from "./ModeToggle";
-import { Button } from "@/ui";
+import { Button, Input } from "@/ui";
 import { Search, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Suspense, useState } from "react";
@@ -21,7 +21,7 @@ export default function Header() {
   const isOnProductsPage = pathname === "/";
 
   const searchInput = (
-    <Suspense fallback={"loading..."}>
+    <Suspense fallback={<Input className="w-full" />}>
       <SearchInput />
     </Suspense>
   );

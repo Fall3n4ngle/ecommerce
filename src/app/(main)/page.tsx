@@ -6,6 +6,7 @@ import {
   FiltersDialog,
   TotalResults,
   ProductsList,
+  SocialIcons,
 } from "./components";
 import {
   formatOptionsFilter,
@@ -59,7 +60,7 @@ export default async function Home({
           <FiltersDialog />
         </div>
       </div>
-      <div className="flex items-start gap-4 lg:gap-10">
+      <div className="mb-8 flex items-start gap-4 md:mb-0 lg:gap-10">
         <div className="hidden md:block">
           <FiltersCard />
         </div>
@@ -70,6 +71,9 @@ export default async function Home({
             order={order}
           />
         </div>
+      </div>
+      <div className="md:hidden">
+        <SocialIcons />
       </div>
     </>
   );
