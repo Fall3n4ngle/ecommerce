@@ -1,5 +1,5 @@
-import { Order } from "../types/Order";
 import { client } from "../../../../../../sanity/lib/client";
+import type { Order } from "../types/Order";
 
 export const createOrder = async (order: Order) => {
   try {
