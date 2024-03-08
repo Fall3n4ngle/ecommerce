@@ -29,7 +29,7 @@ export default function RootLayout({
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
+  metadataBase: new URL(`https://${process.env.VERCEL_URL}`),
   title: {
     default: "Ecommerce",
     template: "%s - Ecommerce",
