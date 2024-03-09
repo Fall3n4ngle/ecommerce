@@ -28,15 +28,13 @@ export async function POST(request: Request) {
   }
 
   if (event.type !== "checkout.session.completed")
-    NextResponse.json({ message: "Unhandled event" });
+    return NextResponse.json({ message: "Unhandled event" });
 
   if (
     !("id" in event.data.object) ||
     typeof event.data.object.id !== "string"
   ) {
-    return NextResponse.redirect(
-      new URL("/checkout/paymentError", request.url),
-    );
+    return NextResponse.json({ message: "Invalid data" });
   }
 
   try {
@@ -122,13 +120,9 @@ export async function POST(request: Request) {
         payment_intent: payment_intent.toString(),
       });
     } catch (error) {
-      return NextResponse.redirect(
-        new URL("/checkout/refundError", request.url),
-      );
+      return NextResponse.json({ message: "Refund failed" });
     }
 
-    return NextResponse.redirect(
-      new URL("/checkout/refundSuccess", request.url),
-    );
+    return NextResponse.json({ message: "Refund success" });
   }
 }
