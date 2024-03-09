@@ -7,7 +7,7 @@ import {
   checkoutDataSchema,
   productDataSchema,
 } from "./validations/checkoutData";
-import { redirect } from "next/navigation";
+import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const body = await request.text();
@@ -22,16 +22,21 @@ export async function POST(request: Request) {
       process.env.STRIPE_WEBHOOK_SECRET || "",
     );
   } catch (err) {
-    redirect("/checkout/paymentError");
+    return NextResponse.redirect(
+      new URL("/checkout/paymentError", request.url),
+    );
   }
 
-  if (event.type !== "checkout.session.completed") return;
+  if (event.type !== "checkout.session.completed")
+    NextResponse.json({ message: "Unhandled event" });
 
   if (
     !("id" in event.data.object) ||
     typeof event.data.object.id !== "string"
   ) {
-    redirect("/checkout/paymentError");
+    return NextResponse.redirect(
+      new URL("/checkout/paymentError", request.url),
+    );
   }
 
   try {
@@ -69,7 +74,7 @@ export async function POST(request: Request) {
         quantity: lineItem.quantity ?? 0,
       };
 
-      // await updateProductCountInStock({ id, value: item.quantity });
+      await updateProductCountInStock({ id, value: item.quantity });
 
       return item;
     });
@@ -99,6 +104,8 @@ export async function POST(request: Request) {
       deliveryStatus: "not delivered",
       ...validatedData.output,
     });
+
+    return NextResponse.json({ message: "Success" });
   } catch (error: any) {
     try {
       const { payment_intent } = await stripe.checkout.sessions.retrieve(
@@ -115,9 +122,13 @@ export async function POST(request: Request) {
         payment_intent: payment_intent.toString(),
       });
     } catch (error) {
-      redirect("/checkout/refundError");
+      return NextResponse.redirect(
+        new URL("/checkout/refundError", request.url),
+      );
     }
 
-    redirect("/checkout/refundSuccess");
+    return NextResponse.redirect(
+      new URL("/checkout/refundSuccess", request.url),
+    );
   }
 }
