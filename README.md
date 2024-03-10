@@ -1,9 +1,10 @@
 # Ecommerce
 
-A fully functional ecommerce website that enables users to discover products they need through an advanced filtering system, add them to their cart, and make purchases.
+A fully functional ecommerce website that allows users to find products they need through an advanced filtering system, add them to cart, and make purchases. The application also includes an admin panel that provides complete control over the site’s content and is temporarily accessible to everyone for testing purposes.
 
-# View app 
-_https://ecommerce-delta-liard.vercel.app/_
+## View app 
+
+_https://ecommerce-amber-six.vercel.app_
 
 ## Technologies Used
 

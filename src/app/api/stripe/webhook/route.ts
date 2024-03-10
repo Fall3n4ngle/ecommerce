@@ -22,9 +22,7 @@ export async function POST(request: Request) {
       process.env.STRIPE_WEBHOOK_SECRET || "",
     );
   } catch (err) {
-    return NextResponse.redirect(
-      new URL("/checkout/paymentError", request.url),
-    );
+    return NextResponse.json({ message: "Invalid data" });
   }
 
   if (event.type !== "checkout.session.completed")
