@@ -22,7 +22,7 @@ export async function POST(request: Request) {
       process.env.STRIPE_WEBHOOK_SECRET || "",
     );
   } catch (err) {
-    return NextResponse.json({ message: "Invalid data" });
+    return NextResponse.json({ message: "Failed to construct event" });
   }
 
   if (event.type !== "checkout.session.completed")
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     !("id" in event.data.object) ||
     typeof event.data.object.id !== "string"
   ) {
-    return NextResponse.json({ message: "Invalid data" });
+    return NextResponse.json({ message: "Invalid event data" });
   }
 
   try {
