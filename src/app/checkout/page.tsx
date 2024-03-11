@@ -14,13 +14,19 @@ export default async function Success({ searchParams: { session_id } }: Props) {
   if (!checkoutSession.customer_details) notFound();
 
   return (
-    <CheckoutSession
-      name={checkoutSession.customer_details.name ?? "Customer"}
-      email={checkoutSession.customer_details.email ?? ""}
-    />
+    <div className="fixed left-0 top-0 h-full w-full">
+      <CheckoutSession
+        name={checkoutSession.customer_details.name ?? "Customer"}
+        email={checkoutSession.customer_details.email ?? ""}
+      />
+    </div>
   );
 }
 
 export const metadata: Metadata = {
-  title: "Success",
+  title: "Checkout Success",
+  robots: {
+    index: false,
+    follow: true,
+  },
 };

@@ -21,8 +21,23 @@ export async function POST(request: Request) {
       signature,
       process.env.STRIPE_WEBHOOK_SECRET || "",
     );
+
+    console.log({
+      body,
+      signature,
+      secret: process.env.STRIPE_WEBHOOK_SECRET,
+    });
   } catch (err) {
-    return NextResponse.json({ message: "Failed to construct event" });
+    return NextResponse.json(
+      {
+        message: "Failed to construct event",
+        body,
+        signature,
+        secret: process.env.STRIPE_WEBHOOK_SECRET,
+        error: (err as Error).message,
+      },
+      { status: 500 },
+    );
   }
 
   if (event.type !== "checkout.session.completed")
@@ -32,7 +47,10 @@ export async function POST(request: Request) {
     !("id" in event.data.object) ||
     typeof event.data.object.id !== "string"
   ) {
-    return NextResponse.json({ message: "Invalid event data" });
+    return NextResponse.json(
+      { message: "Invalid event data" },
+      { status: 400 },
+    );
   }
 
   try {
@@ -101,7 +119,7 @@ export async function POST(request: Request) {
       ...validatedData.output,
     });
 
-    return NextResponse.json({ message: "Success" });
+    return NextResponse.json({ message: "Order created successfully" });
   } catch (error: any) {
     try {
       const { payment_intent } = await stripe.checkout.sessions.retrieve(
@@ -118,9 +136,9 @@ export async function POST(request: Request) {
         payment_intent: payment_intent.toString(),
       });
     } catch (error) {
-      return NextResponse.json({ message: "Refund failed" });
+      return NextResponse.json({ message: "Refund failed" }, { status: 500 });
     }
 
-    return NextResponse.json({ message: "Refund success" });
+    return NextResponse.json({ message: "Refund success" }, { status: 500 });
   }
 }
