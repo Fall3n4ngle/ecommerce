@@ -21,20 +21,10 @@ export async function POST(request: Request) {
       signature,
       process.env.STRIPE_WEBHOOK_SECRET || "",
     );
-
-    console.log({
-      body,
-      signature,
-      secret: process.env.STRIPE_WEBHOOK_SECRET,
-    });
   } catch (err) {
     return NextResponse.json(
       {
-        message: "Failed to construct event",
-        body,
-        signature,
-        secret: process.env.STRIPE_WEBHOOK_SECRET,
-        error: (err as Error).message,
+        message: (err as Error).message ?? "Failed to construct event",
       },
       { status: 500 },
     );

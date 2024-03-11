@@ -35,8 +35,8 @@ export default function ShowcaseSlide({
           />
         </div>
         <div className="relative z-20 flex basis-full flex-col justify-end text-[#f8f8f7] lg:basis-2/3">
-          <h2 className="mb-4 text-xl font-bold sm:text-3xl">{name}</h2>
-          <p className="mb-4 text-sm text-[#f8f8f7]/80 sm:text-base">
+          <h2 className="mb-3 text-xl font-bold sm:text-3xl">{name}</h2>
+          <p className="mb-5 text-sm text-[#f8f8f7]/80 sm:text-base">
             {description}
           </p>
           <Link href={`/product/${slug}`} className="test-class">
